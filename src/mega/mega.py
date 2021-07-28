@@ -23,7 +23,7 @@ from .crypto import (a32_to_base64, encrypt_key, base64_url_encode,
                      decrypt_attr, a32_to_str, get_chunks, str_to_a32,
                      decrypt_key, mpi_to_int, stringhash, prepare_key, make_id,
                      makebyte, modular_inverse)
-from hurry.filesize import size
+from hurry.filesize import size, alternative
 
 logger = logging.getLogger(__name__)
 
@@ -744,9 +744,7 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Do handle Edit Message Problem
-                down_stats_msg = dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
-                if dlstats_msg != down_stats_msg:
-                  dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
+                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size, system=alternative)}` \n**Downloaded:** `{size(file_info.st_size, system=alternative)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
