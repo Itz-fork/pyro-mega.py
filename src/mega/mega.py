@@ -744,7 +744,8 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Do handle Edit Message Problem
-                if dlstats_msg != dlstats_msg:
+                down_stats_msg = dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
+                if dlstats_msg != down_stats_msg:
                   dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
