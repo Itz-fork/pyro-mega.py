@@ -743,7 +743,9 @@ class Mega:
                 mac_str = mac_encryptor.encrypt(encryptor.encrypt(block))
 
                 file_info = os.stat(temp_output_file.name)
-                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
+                # Do handle Edit Message Problem
+                if dlstats_msg != dlstats_msg:
+                  dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
