@@ -1,4 +1,5 @@
 import math
+import time
 import re
 import json
 import logging
@@ -629,6 +630,19 @@ class Mega:
         self._api_request(request_body)
         nodes = self.get_files()
         return self.get_folder_link(nodes[node_id])
+    
+    # Convert Bytes into Readable Format
+    # Ref - https://github.com/SpEcHiDe/AnyDLBot
+    def humanbytes(size):
+      if not size:
+        return ""
+      power = 2**10
+      n = 0
+      Dic_powerN = {0: ' ', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
+      while size > power:
+        size /= power
+        n += 1
+        return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
     def download_url(self, url, dest_path=None, dest_filename=None, statusdl_msg=None):
         """
@@ -654,6 +668,8 @@ class Mega:
                        statusdl_msg=None,
                        is_public=False,
                        file=None):
+        # Process start time
+        start = time.time()
         if file is None:
             if is_public:
                 file_key = base64_to_a32(file_key)
@@ -743,17 +759,8 @@ class Mega:
                 mac_str = mac_encryptor.encrypt(encryptor.encrypt(block))
 
                 file_info = os.stat(temp_output_file.name)
-                # readable file size
-                readable_total_file_size = size(file_size, system=alternative)
-                readable_total_downloaded_file_size = size(file_info.st_size, system=alternative)
-                try:
-                  # No idea why this
-                  prfsize = file_size
-                  prdlfzie = file_info.st_size
-                  if prfsize != file_size and prdlfzie != file_info.st_size:
-                    dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{readable_total_file_size}` \n**Downloaded:** `{readable_total_downloaded_file_size}`")
-                except:
-                  pass
+                # Edit status message
+                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{humanbytes(file_size)}` \n**Downloaded:** `{humanbytes(file_info.st_size)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
