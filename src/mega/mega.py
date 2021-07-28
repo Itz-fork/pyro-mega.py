@@ -1,20 +1,5 @@
-# def humanbytes(size):
-#     # https://stackoverflow.com/a/49361727/4723940
-#     # 2**10 = 1024
-#     if not size:
-#         return ""
-#     power = 2**10
-#     n = 0
-#     Dic_powerN = {0: ' ', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
-#     while size > power:
-#         size /= power
-#         n += 1
-#     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
-
-# bytes = 1363149
-# print(humanbytes(bytes))
-
 import math
+import humanize
 import re
 import json
 import logging
@@ -39,22 +24,21 @@ from .crypto import (a32_to_base64, encrypt_key, base64_url_encode,
                      decrypt_attr, a32_to_str, get_chunks, str_to_a32,
                      decrypt_key, mpi_to_int, stringhash, prepare_key, make_id,
                      makebyte, modular_inverse)
-from hurry.filesize import size, alternative
 
 logger = logging.getLogger(__name__)
 
 # Convert Bytes into Readable Format
 # Ref - https://github.com/SpEcHiDe/AnyDLBot
-def readablesize(size):
-    if not size:
-        return ""
-    power = 2**10
-    n = 0
-    Dic_powerN = {0: ' ', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
-    while size > power:
-        size /= power
-        n += 1
-        return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
+# def readablesize(size):
+#     if not size:
+#         return ""
+#     power = 2**10
+#     n = 0
+#     Dic_powerN = {0: ' ', 1: 'Ki', 2: 'Mi', 3: 'Gi', 4: 'Ti'}
+#     while size > power:
+#         size /= power
+#         n += 1
+#         return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
 class Mega:
     def __init__(self, options=None):
@@ -773,7 +757,7 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Edit status message
-                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{readablesize(file_size)}` \n**Downloaded:** `{readablesize(file_info.st_size)}`")
+                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{humanize.naturalsize(file_size)}` \n**Downloaded:** `{humanize.naturalsize(file_info.st_size)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
