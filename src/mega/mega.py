@@ -23,9 +23,9 @@ from .crypto import (a32_to_base64, encrypt_key, base64_url_encode,
                      decrypt_attr, a32_to_str, get_chunks, str_to_a32,
                      decrypt_key, mpi_to_int, stringhash, prepare_key, make_id,
                      makebyte, modular_inverse)
+from hurry.filesize import size
 
 logger = logging.getLogger(__name__)
-
 
 class Mega:
     def __init__(self, options=None):
@@ -743,7 +743,7 @@ class Mega:
                 mac_str = mac_encryptor.encrypt(encryptor.encrypt(block))
 
                 file_info = os.stat(temp_output_file.name)
-                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{file_size}` \n**Downloaded:** `{file_info.st_size}`")
+                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**File Size:** `{size(file_size)}` \n**Downloaded:** `{size(file_info.st_size)}`")
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
