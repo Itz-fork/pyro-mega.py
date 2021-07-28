@@ -751,7 +751,7 @@ class Mega:
                   prfsize = file_size
                   prdlfzie = file_info.st_size
                   if prfsize != file_size and prdlfzie != file_info.st_size:
-                    dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{}` \n**Downloaded:** `{}`")
+                    dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n**Total File Size:** `{readable_total_file_size}` \n**Downloaded:** `{readable_total_downloaded_file_size}`")
                 except:
                   pass
                 logger.info('%s of %s downloaded', file_info.st_size,
