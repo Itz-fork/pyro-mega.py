@@ -129,7 +129,7 @@ m.download(file, '/home/john-smith/Desktop', 'myfile.zip')
 ```
 ```python
 # Download file with Simple Progress Tracker (Pyrogram Bots Only)
- m.download_url(url, "home/Itz-fork/Mega.nz-Bot/Downlaods", statusdl_msg=your_download_status_message)
+m.download_url(url, "home/Itz-fork/Mega.nz-Bot/Downlaods", statusdl_msg=your_download_status_message)
 ```
 
 ### Import a file from URL, optionally specify destination folder
