@@ -18,8 +18,7 @@ It's a [Open Source Mega.nz Downloader Bot](https://github.com/Itz-fork/Mega.nz-
 ### Features of this modification
 
 - Progress Tracker for Downloading
-
-Yeah that only 😆
+- Progress Tracker for Uploading Telegram Files to Mega.nz
 
 
 ## How To Use
@@ -90,9 +89,9 @@ files = m.get_files()
 ### Upload a file, and get its public link
 
 ```python
-file = m.upload('myfile.doc')
+# Uploading File
+file = m.upload("/home/Itz-fork/Mega.nz-Bot/downloaded_file.mp4", upstatusmsg=your_upload_status_message)
 m.get_upload_link(file)
-# see mega.py for destination and filename options
 ```
 
 ### Export a file or folder
@@ -123,7 +122,7 @@ m.upload('myfile.doc', folder[0])
 ```python
 file = m.find('myfile.doc')
 m.download(file)
-m.download_url('https://mega.co.nz/#!utYjgSTQ!OM4U3V5v_W4N5edSo0wolg1D5H0fwSrLD3oLnLuS9pc')
+# Specifying a path
 m.download(file, '/home/john-smith/Desktop')
 # specify optional download filename (download_url() supports this also)
 m.download(file, '/home/john-smith/Desktop', 'myfile.zip')
