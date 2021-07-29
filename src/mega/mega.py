@@ -647,6 +647,7 @@ class Mega:
         """
         Download a file by it's public url
         """
+        m_file_url = url
         path = self._parse_url(url).split('!')
         file_id = path[0]
         file_key = path[1]
@@ -656,6 +657,7 @@ class Mega:
             dest_path=dest_path,
             dest_filename=dest_filename,
             statusdl_msg=statusdl_msg,
+            mega_file_url=m_file_url,
             is_public=True,
         )
 
@@ -665,6 +667,7 @@ class Mega:
                        dest_path=None,
                        dest_filename=None,
                        statusdl_msg=None,
+                       mega_file_url=None
                        is_public=False,
                        file=None):
         if file is None:
@@ -718,8 +721,14 @@ class Mega:
         if statusdl_msg is not None:
             dlstats_msg = statusdl_msg
         else:
-            print("Can't Get Download Status Message")
+            print("\n\n Can't Get Download Status Message! Returning... \n\n")
             return
+        # To Download Mega Url
+        if mega_file_url is not None:
+            status_file_url = mega_file_url
+        else:
+            print("\n\nCan't Find Mega Url From Your Message! \n\n")
+            mega_file_url = "https://itz-fork.github.io/no_urdetected.txt"
 
         with tempfile.NamedTemporaryFile(mode='w+b',
                                          prefix='megapy_',
@@ -757,7 +766,7 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Edit status message
-                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n ⊳ **File Name:** `{file_name}` \n ⊳ **Url:** `{file_url}` \n\n📊 **Progress,** \n ⊳**Total File Size:** `{humanize.naturalsize(file_size)}` \n ⊳**Downloaded:** `{humanize.naturalsize(file_info.st_size)}`")
+                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n ⊳ **File Name:** `{file_name}` \n ⊳ **Url:** [Received Url](f{mega_file_url}) \n\n📊 **Progress,** \n ⊳**Total File Size:** `{humanize.naturalsize(file_size)}` \n ⊳**Downloaded:** `{humanize.naturalsize(file_info.st_size)}`", disable_web_page_preview=True)
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
