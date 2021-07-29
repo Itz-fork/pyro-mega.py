@@ -12,7 +12,8 @@ API, currently supporting:
 -   renaming
 -   moving files
 
-**Note:** This is a modified version of [mega.py](https://github.com/odwyersoftware/mega.py). Made for [Pyrogram](https://docs.pyrogram.org/) Librarry.
+**Note:** This is a modified version of [mega.py](https://github.com/odwyersoftware/mega.py). Made for [Mega.nz-Bot](https://github.com/Itz-fork/Mega.nz-Bot).
+It's a [Open Source Mega.nz Downloader Bot](https://github.com/Itz-fork/Mega.nz-Bot) so you can get idea about How to use this library for Telegram Bots (PyrogramOnly) 🥳
 
 ### Features of this modification
 
