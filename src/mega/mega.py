@@ -841,7 +841,7 @@ class Mega:
                                                 timeout=self.timeout)
                     completion_file_handle = output_file.text
                     # Edit status message
-                    uploadstatus_msg.edit(f"**Starting to Uplaod The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{filename}` \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(upload_progress)}` \n  ⊳ **Uploaded:** `{humanize.naturalsize(file_size)}`", disable_web_page_preview=True)
+                    uploadstatus_msg.edit(f"**Starting to Upload The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{os.path.basename(filename)}` \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(upload_progress)}` \n  ⊳ **Uploaded:** `{humanize.naturalsize(file_size)}`", disable_web_page_preview=True)
                     logger.info('%s of %s uploaded', upload_progress,
                                 file_size)
             else:
