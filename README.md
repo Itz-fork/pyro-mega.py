@@ -1,9 +1,4 @@
-Mega.py
-=======
-
-[![Build
-Status](https://travis-ci.org/odwyersoftware/mega.py.png?branch=master)](https://travis-ci.org/odwyersoftware/mega.py)
-[![Downloads](https://pypip.in/d/mega.py/badge.png)](https://crate.io/packages/mega.py/)  [![PyPI version](https://badge.fury.io/py/mega.py.svg)](https://pypi.org/project/mega.py/)
+# Pyro Mega.py
 
 Python library for the [Mega.co.nz](https://mega.nz/aff=Zo6IxNaHw14)
 API, currently supporting:
@@ -17,9 +12,13 @@ API, currently supporting:
 -   renaming
 -   moving files
 
-This is a work in progress, further functionality coming shortly.
+**Note:** This is a modified version of [mega.py](https://github.com/odwyersoftware/mega.py). Made for [Pyrogram](https://docs.pyrogram.org/) Librarry.
 
-For more detailed information see API\_INFO.md
+Features of this modification
+
+- Progress Tracker for Downloading
+
+Yeah that only 😆
 
 How To Use
 ----------
@@ -127,6 +126,9 @@ m.download_url('https://mega.co.nz/#!utYjgSTQ!OM4U3V5v_W4N5edSo0wolg1D5H0fwSrLD3
 m.download(file, '/home/john-smith/Desktop')
 # specify optional download filename (download_url() supports this also)
 m.download(file, '/home/john-smith/Desktop', 'myfile.zip')
+
+# Download file with Simple Progress Tracker
+ m.download_url(file, "home/Itz-fork/Mega.nz-Bot/Downlaods", statusdl_msg=your_download_status_message)
 ```
 
 ### Import a file from URL, optionally specify destination folder
