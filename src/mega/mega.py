@@ -778,13 +778,20 @@ class Mega:
             shutil.move(temp_output_file.name, output_path)
             return output_path
 
-    def upload(self, filename, dest=None, dest_filename=None):
+    def upload(self, filename, dest=None, dest_filename=None, upstatusmsg=None):
         # determine storage node
         if dest is None:
             # if none set, upload to cloud drive node
             if not hasattr(self, 'root_id'):
                 self.get_files()
             dest = self.root_id
+
+        # Upload Status message of Pyrogram Bot
+        if upstatusmsg is not None:
+            uploadstatus_msg = upstatusmsg
+        else:
+            print("\n\n Can't Get Upload Status Message! Returning... \n\n")
+            return
 
         # request upload url, call 'u' method
         with open(filename, 'rb') as input_file:
@@ -833,6 +840,8 @@ class Mega:
                                                 data=chunk,
                                                 timeout=self.timeout)
                     completion_file_handle = output_file.text
+                    # Edit status message
+                    uploadstatus_msg.edit(f"**Starting to Uplaod The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{filename}` \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(upload_progress)}` \n  ⊳ **Uploaded:** `{humanize.naturalsize(file_size)}`", disable_web_page_preview=True)
                     logger.info('%s of %s uploaded', upload_progress,
                                 file_size)
             else:
