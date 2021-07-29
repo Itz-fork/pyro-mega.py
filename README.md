@@ -14,14 +14,14 @@ API, currently supporting:
 
 **Note:** This is a modified version of [mega.py](https://github.com/odwyersoftware/mega.py). Made for [Pyrogram](https://docs.pyrogram.org/) Librarry.
 
-Features of this modification
+### Features of this modification
 
 - Progress Tracker for Downloading
 
 Yeah that only 😆
 
-How To Use
-----------
+
+## How To Use
 
 ### Create a Mega account
 
@@ -29,10 +29,10 @@ First, [create an account with Mega](https://mega.nz/aff=Zo6IxNaHw14) .
 
 ### Install mega.py package
 
-Run the following command, or run setup from the latest github source.
+Run the following command to install [pyro-mega.py](https://github.com/Itz-fork/pyro-mega.py)
 
 ```python
-pip install mega.py
+pip install git+https://github.com/Itz-fork/pyro-mega.py
 ```
 
 ### Import mega.py
@@ -126,9 +126,10 @@ m.download_url('https://mega.co.nz/#!utYjgSTQ!OM4U3V5v_W4N5edSo0wolg1D5H0fwSrLD3
 m.download(file, '/home/john-smith/Desktop')
 # specify optional download filename (download_url() supports this also)
 m.download(file, '/home/john-smith/Desktop', 'myfile.zip')
-
-# Download file with Simple Progress Tracker
- m.download_url(file, "home/Itz-fork/Mega.nz-Bot/Downlaods", statusdl_msg=your_download_status_message)
+```
+```python
+# Download file with Simple Progress Tracker (Pyrogram Bots Only)
+m.download_url(url, "home/Itz-fork/Mega.nz-Bot/Downlaods", statusdl_msg=your_download_status_message)
 ```
 
 ### Import a file from URL, optionally specify destination folder
@@ -163,8 +164,12 @@ file = m.find('myfile.doc')
 m.rename(file, 'my_file.doc')
 ```
 
-## Contact Support
+## Support
 
-For paid priority support contact [mega@odwyer.software](mailto:mega@odwyer.software).
+**Contact Original Authors,**
+- [mega@odwyer.software](mailto:mega@odwyer.software)
+- [UK Python Development Agency](https://odwyer.software/)
 
-**[UK Python Development Agency](https://odwyer.software/)**
+**Modified for Pyrogram by,**
+- [Itz-fork](https://github.com/Itz-fork)
+- [Support Group](https://t.me/Nexa_bots)
