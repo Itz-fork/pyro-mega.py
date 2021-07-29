@@ -667,7 +667,7 @@ class Mega:
                        dest_path=None,
                        dest_filename=None,
                        statusdl_msg=None,
-                       mega_file_url=None
+                       mega_file_url=None,
                        is_public=False,
                        file=None):
         if file is None:
