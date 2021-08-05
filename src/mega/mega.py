@@ -766,7 +766,7 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Edit status message
-                dlstats_msg.edit(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{file_name}` \n  ⊳ **Url:** [Received Url]({mega_file_url}) \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(file_size)}` \n  ⊳ **Downloaded:** `{humanize.naturalsize(file_info.st_size)}`", disable_web_page_preview=True)
+                dlstats_msg.edit_text(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{file_name}` \n  ⊳ **Url:** [Received Url]({mega_file_url}) \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(file_size)}` \n  ⊳ **Downloaded:** `{humanize.naturalsize(file_info.st_size)}`", disable_web_page_preview=True)
                 logger.info('%s of %s downloaded', file_info.st_size,
                             file_size)
             file_mac = str_to_a32(mac_str)
