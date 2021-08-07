@@ -1,3 +1,4 @@
+# From mega.py
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 
@@ -21,13 +22,13 @@ with open('HISTORY.md', 'r', encoding='utf-8') as hist_file:
     history = hist_file.read()
 
 setup(name='mega.py',
-      version='1.1.0.dev0',
+      version='1.0.8-pyro_mod',
       packages=find_packages('src', exclude=('tests', )),
       package_dir={'': 'src'},
       include_package_data=True,
       zip_safe=False,
       url='https://github.com/Itz-fork/pyro-mega.py',
-      description='Python lib for the Mega.co.nz API',
+      description='Python lib for the Mega.nz API with Pyrogram Support',
       long_description=readme + '\n\n' + history,
       long_description_content_type='text/markdown',
       author='O\'Dwyer Software',

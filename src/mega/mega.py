@@ -1,3 +1,7 @@
+# Modded for Pyrogram by Itz-fork
+# Copyright (c) 2013 - 2020 odwyersoftware
+# Copyright (c) 2021 - Itz-fork
+
 import math
 import humanize
 import re
@@ -24,6 +28,7 @@ from .crypto import (a32_to_base64, encrypt_key, base64_url_encode,
                      decrypt_attr, a32_to_str, get_chunks, str_to_a32,
                      decrypt_key, mpi_to_int, stringhash, prepare_key, make_id,
                      makebyte, modular_inverse)
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +44,17 @@ logger = logging.getLogger(__name__)
 #         size /= power
 #         n += 1
 #         return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
+
+# Cancel Button
+CANCEL_BUTTN=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "Cancel ❌", callback_data="cancelvro"
+                    )
+                ]
+            ]
+        )
 
 class Mega:
     def __init__(self, options=None):
@@ -766,9 +782,12 @@ class Mega:
 
                 file_info = os.stat(temp_output_file.name)
                 # Edit status message
-                dlstats_msg.edit_text(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{file_name}` \n  ⊳ **Url:** [Received Url]({mega_file_url}) \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(file_size)}` \n  ⊳ **Downloaded:** `{humanize.naturalsize(file_info.st_size)}`", disable_web_page_preview=True)
-                logger.info('%s of %s downloaded', file_info.st_size,
-                            file_size)
+                if dlstats_msg is None:
+                    return
+                else:
+                    dlstats_msg.edit_text(f"**Starting to Download The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{file_name}` \n  ⊳ **Url:** [Received Url]({mega_file_url}) \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(file_size)}` \n  ⊳ **Downloaded:** `{humanize.naturalsize(file_info.st_size)}`", reply_markup=CANCEL_BUTTN, disable_web_page_preview=True)
+                    logger.info('%s of %s downloaded', file_info.st_size, file_size)
+            
             file_mac = str_to_a32(mac_str)
             # check mac integrity
             if (file_mac[0] ^ file_mac[1],
@@ -841,7 +860,7 @@ class Mega:
                                                 timeout=self.timeout)
                     completion_file_handle = output_file.text
                     # Edit status message
-                    uploadstatus_msg.edit(f"**Starting to Upload The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{os.path.basename(filename)}` \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(upload_progress)}` \n  ⊳ **Uploaded:** `{humanize.naturalsize(file_size)}`", disable_web_page_preview=True)
+                    uploadstatus_msg.edit(f"**Starting to Upload The Content! This may take while 😴** \n\n📑 **Info,** \n  ⊳ **File Name:** `{os.path.basename(filename)}` \n\n📊 **Progress,** \n  ⊳ **Total File Size:** `{humanize.naturalsize(file_size)}` \n  ⊳ **Uploaded:** `{humanize.naturalsize(upload_progress)}`", disable_web_page_preview=True)
                     logger.info('%s of %s uploaded', upload_progress,
                                 file_size)
             else:
