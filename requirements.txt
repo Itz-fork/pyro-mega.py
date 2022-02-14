@@ -1,5 +1,5 @@
-requests>=0.10
+requests
 pycryptodome>=3.9.6,<4.0.0
-pathlib==1.0.1
+pathlib
 tenacity>=5.1.5,<6.0.0
 humanize
