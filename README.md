@@ -32,7 +32,7 @@ First, [create an account with Mega](https://mega.nz/aff=Zo6IxNaHw14) .
 Run the following command to install [pyro-mega.py](https://github.com/Itz-fork/pyro-mega.py)
 
 ```python
-pip install git+https://github.com/Itz-fork/pyro-mega.py
+pip3 install git+https://github.com/Itz-fork/pyro-mega.py
 ```
 
 ### Import mega.py
