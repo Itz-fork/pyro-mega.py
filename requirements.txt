@@ -1,4 +1,4 @@
-requests
-pycryptodome>=3.9.6,<4.0.0
-tenacity>=5.1.5,<6.0.0
-humanize
+requests==2.31.0
+pycryptodome==3.18.0
+tenacity==8.2.2
+humanize==4.7.0
